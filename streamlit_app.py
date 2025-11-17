@@ -11,6 +11,15 @@ from google.genai import types
 from langfuse import get_client
 
 from agents.claims_adk_app.agent import root_agent, regeneration_agent, qa_agent
+from dotenv import load_dotenv
+from google import genai
+load_dotenv()
+api_key=os.environ.get("GEMINI_API_KEY")
+if not api_key:
+    raise ValueError("GEMINI_API_KEY environment variable not set.")
+else:
+    print(api_key)
+QA_CLIENT =genai.Client(api_key=api_key)
 
 logging.basicConfig(level=logging.ERROR)
 
